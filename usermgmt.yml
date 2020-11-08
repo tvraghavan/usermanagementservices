@@ -1,0 +1,128 @@
+openapi: 3.0.1
+info:
+  title: usermanagement services
+  description: user management service using spring reactive web
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    name: Raghavan
+    email: tvraghavan@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://springdoc.org'
+  version: '1.00'
+servers:
+  - url: 'http://localhost:8080'
+    description: Generated server url
+tags:
+  - name: usermanagement
+    description: usermanagement services
+  - name: createUser
+    description: Create a new user
+  - name: getAllUsers
+    description: Get all available users
+paths:
+  /:
+    get:
+      tags:
+        - getAllUsers
+      summary: Get All Users
+      description: Get All Users
+      operationId: findAll
+      responses:
+        '200':
+          description: List of users successfully retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+              examples:
+                example-1:
+                  summary: successful scenario
+                  description: example-One
+                  value:
+                    - id: '1'
+                      userid: admin
+                      firstname: admin
+                      lastname: user
+                      status: A
+                      emailid: admin@email.com
+                      mobilenumber: '9700012345'
+                    - id: 22c95bb8-9db7-4e7c-8acf-612ef991ba39
+                      userid: raghav
+                      firstname: Raghavan
+                      lastname: TV
+                      status: A
+                      emailid: raghavan.tv@email.com
+                      mobilenumber: '9000012346'
+                    - id: 3c64578a-8159-4bf0-99e7-173dbb5c77e0
+                      userid: guest
+                      firstname: Guest
+                      lastname: User
+                      status: A
+                      emailid: guest@email.com
+                      mobilenumber: '9000012345'
+                example-2:
+                  summary: no data available
+                  description: example-Two
+                  value: []
+  /create:
+    post:
+      tags:
+        - createUser
+      summary: Create a new user
+      description: Create a new User
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            examples:
+              basic user:
+                summary: Create Basic User
+                description: example-One
+                value:
+                  userid: admin
+                  firstname: admin
+                  lastname: user
+                  status: A
+                  emailid: admin@email.com
+                  mobilenumber: '9700012345'
+              complete user:
+                summary: Create User with extended attributes
+                description: example-Two
+                value:
+                  userid: admin
+                  firstname: admin
+                  lastname: user
+                  status: A
+                  emailid: admin@email.com
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        userid:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        status:
+          type: string
+        emailid:
+          type: string
+        mobilenumber:
+          type: string
