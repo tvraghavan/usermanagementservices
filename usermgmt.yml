@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: usermanagement services
-  description: user management service using spring reactive web
+  description: '@project.description@'
   termsOfService: 'http://swagger.io/terms/'
   contact:
     name: Raghavan
@@ -102,11 +102,33 @@ paths:
         required: true
       responses:
         '200':
-          description: OK
+          description: Create a new user
           content:
-            '*/*':
+            application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/User'
+              examples:
+                basic user:
+                  summary: basic user scenario
+                  description: example-One
+                  value:
+                    id: '1'
+                    userid: admin
+                    firstname: admin
+                    lastname: user
+                    status: A
+                    emailid: admin@email.com
+                complete user:
+                  summary: complete user scenario
+                  description: example-Two
+                  value:
+                    id: '1'
+                    userid: admin
+                    firstname: admin
+                    lastname: user
+                    status: A
+                    emailid: admin@email.com
+                    mobilenumber: '9700012345'
 components:
   schemas:
     User:
